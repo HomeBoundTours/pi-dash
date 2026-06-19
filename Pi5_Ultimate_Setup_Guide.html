@@ -313,6 +313,7 @@ tr:last-child td { border-bottom: none; }
     <div class="tab" data-tab="magic" onclick="showTab('magic')"><span class="ti">🔮</span> Magic Automations</div>
     <div class="tab" data-tab="setup" onclick="showTab('setup')"><span class="ti">⚙️</span> Setup Guide</div>
     <div class="tab" data-tab="remote" onclick="showTab('remote')"><span class="ti">🖥️</span> Remote Access</div>
+    <div class="tab" data-tab="gaming" onclick="showTab('gaming')"><span class="ti">🎮</span> Gaming</div>
     <div class="tab" data-tab="checklist" onclick="showTab('checklist')"><span class="ti">✅</span> Checklist</div>
   </div>
 </div>
@@ -1229,6 +1230,330 @@ sudo tailscale up --advertise-exit-node</span></pre></div>
       <p style="font-size:0.82rem;color:var(--muted2);margin-bottom:8px"><strong style="color:var(--text)">Raspberry Pi Connect</strong></p>
       <div class="code"><div class="code-hdr"><span>Browser remote desktop</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="kw">sudo apt install rpi-connect -y
 rpi-connect signin</span></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- GAMING -->
+<div class="panel" id="tab-gaming">
+  <div class="subtabs">
+    <div class="stab active" onclick="showSub('gm','overview')">🎮 Overview</div>
+    <div class="stab" onclick="showSub('gm','consoles')">🕹️ Consoles</div>
+    <div class="stab" onclick="showSub('gm','setup')">⚙️ Setup</div>
+    <div class="stab" onclick="showSub('gm','gamecube')">🐬 GameCube / N64</div>
+    <div class="stab" onclick="showSub('gm','controllers')">🎮 Controllers</div>
+    <div class="stab" onclick="showSub('gm','roms')">📀 ROMs & Art</div>
+    <div class="stab" onclick="showSub('gm','streaming')">📺 Stream to TV/Phone</div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="subpanel active" id="gm-overview">
+    <div class="alert tip"><span class="ai">🎮</span><div class="ab"><strong>The approach:</strong> EmulationStation DE as the beautiful frontend + RetroArch for most emulators + Dolphin standalone for GameCube/Wii. All ROMs on your NVMe SSD. Play on your TV via HDMI or stream to any device with Moonlight.</div></div>
+    <div class="stats" style="margin-bottom:20px">
+      <div class="stat"><div class="sv">30+</div><div class="sl">Consoles supported</div></div>
+      <div class="stat"><div class="sv">60fps</div><div class="sl">GameCube on Pi 5</div></div>
+      <div class="stat"><div class="sv">100%</div><div class="sl">N64 library playable</div></div>
+      <div class="stat"><div class="sv">BT</div><div class="sl">Xbox / PS5 / 8BitDo</div></div>
+    </div>
+    <div class="grid3">
+      <div class="magic"><div class="m-icon">🎭</div><h4>EmulationStation DE</h4><p>A beautiful, polished frontend that launches all your emulators from one place. Pulls cover art, videos, ratings, and descriptions for every game automatically. Looks incredible on a TV.</p><div class="m-wow">→ Your Pi becomes a proper retro console</div></div>
+      <div class="magic"><div class="m-icon">🕹️</div><h4>RetroArch</h4><p>The universal emulation engine. Runs NES, SNES, GBA, N64, PS1, Dreamcast, Arcade, and 20+ more through a single app. One controller config applies to everything.</p><div class="m-wow">→ Every retro console, one setup</div></div>
+      <div class="magic"><div class="m-icon">🐬</div><h4>Dolphin (GameCube + Wii)</h4><p>The best GameCube/Wii emulator on the planet. Pi 5 runs most GameCube titles at full 60fps. Wii works for many titles. Play with original GameCube controllers via adapter.</p><div class="m-wow">→ Mario Kart Double Dash at 60fps</div></div>
+      <div class="magic"><div class="m-icon">📺</div><h4>Moonlight Streaming</h4><p>Stream your Pi's gaming session to any TV, phone, or tablet on your network. Play GameCube in your bedroom on your phone. Or cast to a TV that doesn't have the Pi plugged in.</p><div class="m-wow">→ Games on every screen in the house</div></div>
+      <div class="magic"><div class="m-icon">🎨</div><h4>Skraper Art Scraping</h4><p>Automatically downloads box art, screenshots, video previews, and ratings for every ROM in your library. Your game collection looks like a professional storefront.</p><div class="m-wow">→ Looks better than buying them new</div></div>
+      <div class="magic"><div class="m-icon">🌐</div><h4>Netplay</h4><p>RetroArch has built-in netplay. Play any retro game online with friends — even games that never had online modes. N64 Mario Party, SNES Street Fighter, GBA Pokémon trading.</p><div class="m-wow">→ Online multiplayer for any retro game</div></div>
+    </div>
+  </div>
+
+  <!-- CONSOLES -->
+  <div class="subpanel" id="gm-consoles">
+    <div class="sh" style="margin-top:0"><h2>What Runs on Pi 5</h2><div class="line"></div><span class="badge">Pi 5 8GB is the most capable Pi ever for emulation</span></div>
+    <table>
+      <tr><th>Console</th><th>Emulator</th><th>Pi 5 Performance</th><th>Notes</th></tr>
+      <tr><td><strong>NES / Famicom</strong></td><td>RetroArch (FCEUMM)</td><td><span class="tag g">Perfect 60fps</span></td><td>Entire library plays flawlessly</td></tr>
+      <tr><td><strong>SNES / Super Famicom</strong></td><td>RetroArch (Snes9x)</td><td><span class="tag g">Perfect 60fps</span></td><td>Every game. No exceptions.</td></tr>
+      <tr><td><strong>Game Boy / GBC / GBA</strong></td><td>RetroArch (mGBA)</td><td><span class="tag g">Perfect</span></td><td>Entire libraries. Link cable emulated for trading.</td></tr>
+      <tr><td><strong>Sega Genesis / Mega Drive</strong></td><td>RetroArch (Genesis Plus GX)</td><td><span class="tag g">Perfect</span></td><td>Includes 32X and Sega CD</td></tr>
+      <tr><td><strong>Nintendo 64</strong></td><td>RetroArch (Mupen64Plus-Next)</td><td><span class="tag g">Near-perfect</span></td><td>~95% of library at 60fps. A few demanding titles dip.</td></tr>
+      <tr><td><strong>PlayStation 1</strong></td><td>DuckStation</td><td><span class="tag g">Perfect</span></td><td>Upscaled to 4K, enhancement filters, every game runs</td></tr>
+      <tr><td><strong>PlayStation 2</strong></td><td>AetherSX2 / PCSX2</td><td><span class="tag y">Good — varies</span></td><td>Most 2D/light 3D games run great. Heavy titles struggle.</td></tr>
+      <tr><td><strong>GameCube</strong></td><td>Dolphin</td><td><span class="tag g">Excellent</span></td><td>Most titles 60fps. Some demanding ones need OC. See GameCube tab.</td></tr>
+      <tr><td><strong>Wii</strong></td><td>Dolphin</td><td><span class="tag y">Good — varies</span></td><td>Many titles playable. More demanding than GameCube.</td></tr>
+      <tr><td><strong>Nintendo DS</strong></td><td>melonDS</td><td><span class="tag g">Perfect</span></td><td>Full speed, both screens, touchscreen emulated</td></tr>
+      <tr><td><strong>PSP</strong></td><td>PPSSPP</td><td><span class="tag g">Excellent</span></td><td>Near-full library at 60fps, some upscaling possible</td></tr>
+      <tr><td><strong>Dreamcast</strong></td><td>RetroArch (Flycast)</td><td><span class="tag g">Very good</span></td><td>Most games full speed. Sonic Adventure, Shenmue, etc.</td></tr>
+      <tr><td><strong>Arcade (MAME)</strong></td><td>RetroArch (MAME)</td><td><span class="tag g">Perfect</span></td><td>Street Fighter, Metal Slug, all the classics</td></tr>
+      <tr><td><strong>Atari 2600/7800/Jaguar</strong></td><td>RetroArch cores</td><td><span class="tag g">Perfect</span></td><td>Full libraries no issue</td></tr>
+      <tr><td><strong>TurboGrafx-16 / PC Engine</strong></td><td>RetroArch (Beetle PCE)</td><td><span class="tag g">Perfect</span></td><td>Including CD-ROM games</td></tr>
+      <tr><td><strong>3DS</strong></td><td>Citra (via RetroArch)</td><td><span class="tag y">Moderate</span></td><td>Many games playable, not all at full speed</td></tr>
+    </table>
+  </div>
+
+  <!-- SETUP -->
+  <div class="subpanel" id="gm-setup">
+    <div class="phase-step"><div class="phase-num">1</div><div class="phase-content"><h4>Create your ROM folder structure on the SSD</h4>
+    <div class="code"><div class="code-hdr"><span>Organize your library</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="kw">sudo mkdir -p /mnt/games/{roms,bios,saves,screenshots}
+sudo mkdir -p /mnt/games/roms/{nes,snes,n64,gba,gbc,gb,psx,ps2,gamecube,wii,psp,dreamcast,mame,genesis,nds}
+sudo chown -R $USER:$USER /mnt/games</span></pre></div></div></div>
+
+    <div class="phase-step"><div class="phase-num">2</div><div class="phase-content"><h4>Install EmulationStation DE</h4>
+    <div class="code"><div class="code-hdr"><span>Beautiful game frontend</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Download the Pi 5 ARM64 .deb from emulationstation.org</span>
+<span class="kw">wget https://github.com/es-de/emulationstation-de/releases/latest/download/EmulationStation-DE_arm64.deb
+sudo apt install ./EmulationStation-DE_arm64.deb -y</span>
+<span class="cm"># Launch it once to generate config files:</span>
+<span class="kw">emulationstation</span></pre></div></div></div>
+
+    <div class="phase-step"><div class="phase-num">3</div><div class="phase-content"><h4>Install RetroArch</h4>
+    <div class="code"><div class="code-hdr"><span>Universal emulation engine</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Install via apt (Raspberry Pi repo has it optimized):</span>
+<span class="kw">sudo apt install retroarch -y</span>
+
+<span class="cm"># Install cores (emulators) via RetroArch itself:</span>
+<span class="cm"># Open RetroArch → Load Core → Download a Core</span>
+<span class="cm"># Key cores to get:</span>
+<span class="cm"># - Mupen64Plus-Next (N64)</span>
+<span class="cm"># - Snes9x (SNES)</span>
+<span class="cm"># - FCEUMM (NES)</span>
+<span class="cm"># - mGBA (GBA/GBC/GB)</span>
+<span class="cm"># - Genesis Plus GX (Sega)</span>
+<span class="cm"># - Flycast (Dreamcast)</span>
+<span class="cm"># - MAME (Arcade)</span>
+<span class="cm"># - melonDS (DS)</span>
+<span class="cm"># - Beetle PSX HW (PS1)</span></pre></div></div></div>
+
+    <div class="phase-step"><div class="phase-num">4</div><div class="phase-content"><h4>Install DuckStation (PS1 — best option)</h4>
+    <div class="code"><div class="code-hdr"><span>Best PS1 emulator — upscaling + enhancements</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="kw">sudo apt install flatpak -y
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak install flathub org.duckstation.DuckStation -y</span></pre></div></div></div>
+
+    <div class="phase-step"><div class="phase-num">5</div><div class="phase-content"><h4>Install PPSSPP (PSP)</h4>
+    <div class="code"><div class="code-hdr"><span>Best PSP emulator</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="kw">sudo apt install ppsspp -y</span></pre></div></div></div>
+
+    <div class="phase-step"><div class="phase-num">6</div><div class="phase-content"><h4>Point EmulationStation at your ROM folders</h4>
+    <div class="code"><div class="code-hdr"><span>~/.emulationstation/es_systems.xml (key section)</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># ES-DE auto-detects /mnt/games/roms if you name folders correctly.
+# Edit ~/.emulationstation/es_settings.xml and set:</span>
+<span class="st">&lt;string name="ROMDirectory" value="/mnt/games/roms" /&gt;</span>
+<span class="cm"># Drop ROMs in the correct subfolders and restart ES-DE.
+# It will find everything automatically.</span></pre></div></div></div>
+  </div>
+
+  <!-- GAMECUBE -->
+  <div class="subpanel" id="gm-gamecube">
+    <div class="alert tip"><span class="ai">🐬</span><div class="ab"><strong>Pi 5 + Dolphin = surprisingly good.</strong> Mario Kart: Double Dash, Super Smash Bros Melee, Legend of Zelda: Wind Waker, Paper Mario: The Thousand-Year Door — all run at 60fps or close. Some GPU-heavy titles need a small overclock.</div></div>
+
+    <div class="grid2" style="margin-bottom:20px">
+      <div>
+        <div class="sh" style="margin-top:0"><h2>Install Dolphin</h2><div class="line"></div></div>
+        <div class="code"><div class="code-hdr"><span>Dolphin — GameCube + Wii emulator</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Add the Dolphin PPA for latest version:</span>
+<span class="kw">sudo apt install flatpak -y
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+sudo flatpak install flathub org.DolphinEmu.dolphin-emu -y</span>
+
+<span class="cm"># Run Dolphin:</span>
+<span class="kw">flatpak run org.DolphinEmu.dolphin-emu</span>
+
+<span class="cm"># Add to EmulationStation: point gamecube folder to /mnt/games/roms/gamecube
+# ES-DE will launch Dolphin automatically when you select a GameCube game</span></pre></div>
+
+        <div class="sh" style="margin-top:20px"><h2>Dolphin Best Settings for Pi 5</h2><div class="line"></div></div>
+        <table>
+          <tr><th>Setting</th><th>Value</th></tr>
+          <tr><td>Graphics Backend</td><td>Vulkan (much faster than OpenGL on Pi 5)</td></tr>
+          <tr><td>Internal Resolution</td><td>2x Native (720p) — sweet spot for Pi 5</td></tr>
+          <tr><td>Shader Compilation</td><td>Async (prevents stutters)</td></tr>
+          <tr><td>CPU Emulation</td><td>JIT Recompiler (fastest)</td></tr>
+          <tr><td>Dual Core</td><td>Enabled</td></tr>
+          <tr><td>Audio Backend</td><td>PulseAudio</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="sh" style="margin-top:0"><h2>Pi 5 Overclock for GameCube (Optional)</h2><div class="line"></div></div>
+        <div class="alert warn"><span class="ai">⚠️</span><div class="ab"><strong>Only do this with the Argon NEO 5 case.</strong> The case's fan and heatsink handle it fine. Without active cooling, don't overclock.</div></div>
+        <div class="code"><div class="code-hdr"><span>Mild overclock — adds ~15% GameCube performance</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Add to /boot/firmware/config.txt:</span>
+<span class="kw">sudo nano /boot/firmware/config.txt</span>
+
+<span class="cm"># Add these lines at the bottom:</span>
+over_voltage=6
+arm_freq=2800
+gpu_freq=800</pre></div>
+        <div class="sh" style="margin-top:20px"><h2>GameCube Game Compatibility (Pi 5)</h2><div class="line"></div></div>
+        <table>
+          <tr><th>Game</th><th>Performance</th></tr>
+          <tr><td>Mario Kart: Double Dash</td><td><span class="tag g">60fps perfect</span></td></tr>
+          <tr><td>Super Smash Bros Melee</td><td><span class="tag g">60fps perfect</span></td></tr>
+          <tr><td>Legend of Zelda: Wind Waker</td><td><span class="tag g">Excellent</span></td></tr>
+          <tr><td>Paper Mario: TTYD</td><td><span class="tag g">60fps</span></td></tr>
+          <tr><td>Luigi's Mansion</td><td><span class="tag g">60fps</span></td></tr>
+          <tr><td>Metroid Prime</td><td><span class="tag y">Good, minor dips</span></td></tr>
+          <tr><td>F-Zero GX</td><td><span class="tag y">Mostly 60fps</span></td></tr>
+          <tr><td>Resident Evil 4</td><td><span class="tag y">Playable</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sh"><h2>N64 — Full Library, Great Performance</h2><div class="line"></div></div>
+    <div class="grid2">
+      <div>
+        <div class="code"><div class="code-hdr"><span>N64 via RetroArch (Mupen64Plus-Next)</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Best N64 core: Mupen64Plus-Next
+# In RetroArch: Load Core → Download → Mupen64Plus-Next
+# Or install directly:</span>
+<span class="kw">sudo apt install libretro-mupen64plus -y</span>
+
+<span class="cm"># Recommended settings for N64:
+# Video Plugin: GLideN64 (best accuracy)
+# Resolution: 2x or 4x upscale
+# Widescreen hack: enable for supported games</span></pre></div>
+      </div>
+      <div>
+        <table>
+          <tr><th>N64 Game</th><th>Pi 5</th></tr>
+          <tr><td>Super Mario 64</td><td><span class="tag g">Perfect 60fps</span></td></tr>
+          <tr><td>Zelda: Ocarina of Time</td><td><span class="tag g">Perfect</span></td></tr>
+          <tr><td>Zelda: Majora's Mask</td><td><span class="tag g">Perfect</span></td></tr>
+          <tr><td>GoldenEye 007</td><td><span class="tag g">Full speed</span></td></tr>
+          <tr><td>Mario Kart 64</td><td><span class="tag g">Perfect</span></td></tr>
+          <tr><td>Donkey Kong 64</td><td><span class="tag g">Full speed</span></td></tr>
+          <tr><td>Perfect Dark</td><td><span class="tag y">Good, some dips</span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTROLLERS -->
+  <div class="subpanel" id="gm-controllers">
+    <div class="grid2">
+      <div>
+        <div class="sh" style="margin-top:0"><h2>Bluetooth Controllers</h2><div class="line"></div></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">🎮</span><div class="svc-body"><div class="svc-name">Xbox Series Controller</div><div class="svc-desc">Best Pi controller. Pairs via Bluetooth, detected instantly by Pi OS, works in RetroArch + Dolphin out of the box. Rechargeable version recommended.</div></div><span class="tag g">Recommended</span></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">🎮</span><div class="svc-body"><div class="svc-name">PS5 DualSense / PS4 DualShock 4</div><div class="svc-desc">Great build quality, touchpad works as extra button. Full Bluetooth support on Pi 5. Haptics work in some games.</div></div><span class="tag g">Excellent</span></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">🎮</span><div class="svc-body"><div class="svc-name">8BitDo Pro 2 / SN30 Pro</div><div class="svc-desc">Best retro-style controller for Pi. Multiple connectivity modes (BT, 2.4G, USB). SNES layout feels perfect for RetroArch.</div></div><span class="tag p">Retro pick</span></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">🎮</span><div class="svc-body"><div class="svc-name">Nintendo Switch Pro Controller</div><div class="svc-desc">Pairs via Bluetooth. Great D-pad. Works well in RetroArch.</div></div><span class="tag b">Works great</span></div>
+
+        <div class="sh" style="margin-top:20px"><h2>Pair a Bluetooth Controller</h2><div class="line"></div></div>
+        <div class="code"><div class="code-hdr"><span>Bluetooth pairing via terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="kw">bluetoothctl</span>
+<span class="cm"># In the bluetoothctl prompt:</span>
+power on
+agent on
+scan on
+<span class="cm"># Put your controller in pairing mode</span>
+<span class="cm"># Find its MAC address in the scan results, then:</span>
+pair XX:XX:XX:XX:XX:XX
+trust XX:XX:XX:XX:XX:XX
+connect XX:XX:XX:XX:XX:XX</pre></div>
+      </div>
+      <div>
+        <div class="sh" style="margin-top:0"><h2>GameCube Controller Adapter</h2><div class="line"></div></div>
+        <div class="alert info"><span class="ai">🐬</span><div class="ab"><strong>Want to play GameCube with real GameCube controllers?</strong> Get the official Nintendo GameCube Controller Adapter (also works with 3rd party ones). Plugs into USB. Dolphin detects it automatically.</div></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">🔌</span><div class="svc-body"><div class="svc-name">Official Nintendo GCN Adapter</div><div class="svc-desc">4-port adapter. Plug into Pi's USB 3.0 port. Dolphin → Controllers → GameCube Adapter. Instant detection. ~$20.</div></div><span class="tag g">Best option</span></div>
+        <div class="sh" style="margin-top:20px"><h2>Auto-configure in RetroArch</h2><div class="line"></div></div>
+        <div class="code"><div class="code-hdr"><span>RetroArch auto-detects most controllers</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># RetroArch has profiles for Xbox, PS4/PS5, 8BitDo, Switch Pro
+# Plug in / pair your controller, then:</span>
+<span class="cm"># RetroArch → Settings → Input → RetroPad Binds → Auto-Configure</span>
+<span class="cm"># One button press maps everything. Works for all emulators simultaneously.</span>
+
+<span class="cm"># For Dolphin specifically:</span>
+<span class="cm"># Open Dolphin → Controllers → Port 1 → Standard Controller → Configure
+# Click each button on screen and press the matching button on your controller</span></pre></div>
+        <div class="sh" style="margin-top:20px"><h2>Hotkey Tips</h2><div class="line"></div></div>
+        <table>
+          <tr><th>Hotkey</th><th>Action</th></tr>
+          <tr><td><code style="color:var(--accent2)">Select + Start</code></td><td>Exit game, return to EmulationStation</td></tr>
+          <tr><td><code style="color:var(--accent2)">Select + R</code></td><td>Save state</td></tr>
+          <tr><td><code style="color:var(--accent2)">Select + L</code></td><td>Load state</td></tr>
+          <tr><td><code style="color:var(--accent2)">Select + ↑/↓</code></td><td>Change save slot</td></tr>
+          <tr><td><code style="color:var(--accent2)">Select + X</code></td><td>RetroArch menu</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROMS -->
+  <div class="subpanel" id="gm-roms">
+    <div class="alert info"><span class="ai">ℹ️</span><div class="ab"><strong>On ROM legality:</strong> You're legally allowed to dump ROMs from physical cartridges/discs you own. Many people source ROMs online — that's between you and your conscience. BIOS files (for PS1, PS2, etc.) must be dumped from hardware you own.</div></div>
+    <div class="grid2">
+      <div>
+        <div class="sh" style="margin-top:0"><h2>Transfer ROMs to Pi</h2><div class="line"></div></div>
+        <p style="font-size:0.84rem;color:var(--muted2);margin-bottom:12px">Easiest method: set up a Samba share and drag ROMs from your Windows PC over the network.</p>
+        <div class="code"><div class="code-hdr"><span>Set up Samba share for ROM transfers</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="kw">sudo apt install samba samba-common-bin -y
+sudo nano /etc/samba/smb.conf</span>
+
+<span class="cm"># Add at the bottom:</span>
+[games]
+  path = /mnt/games
+  writeable = yes
+  browseable = yes
+  public = no
+  valid users = aaron
+
+<span class="kw">sudo smbpasswd -a aaron
+sudo systemctl restart smbd</span>
+
+<span class="cm"># On Windows: open File Explorer → \\piserver.local\games
+# Drag ROMs directly into the right folders</span></pre></div>
+
+        <div class="sh" style="margin-top:20px"><h2>BIOS Files (Required for some consoles)</h2><div class="line"></div></div>
+        <table>
+          <tr><th>Console</th><th>BIOS File</th><th>Folder</th></tr>
+          <tr><td>PlayStation 1</td><td>scph5501.bin</td><td>/mnt/games/bios/</td></tr>
+          <tr><td>PlayStation 2</td><td>ps2-0230a-20080220.bin</td><td>/mnt/games/bios/</td></tr>
+          <tr><td>Dreamcast</td><td>dc_boot.bin</td><td>/mnt/games/bios/dc/</td></tr>
+          <tr><td>GameBoy (optional)</td><td>gb_bios.bin</td><td>/mnt/games/bios/</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="sh" style="margin-top:0"><h2>Skraper — Auto Art Downloading</h2><div class="line"></div></div>
+        <p style="font-size:0.84rem;color:var(--muted2);margin-bottom:10px">Skraper scrapes ScreenScraper.eu to automatically download cover art, 3D boxes, screenshots, videos, and game info for your entire library. Run it once and your library looks incredible.</p>
+        <div class="code"><div class="code-hdr"><span>Install Skraper on Windows PC (runs against Pi's Samba share)</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Download Skraper from skraper.net (Windows app)
+# Point it to \\piserver.local\games\roms
+# Create a free account at screenscraper.fr
+# Select EmulationStation as target
+# Hit Scrape All — it downloads artwork for everything</span></pre></div>
+
+        <div class="sh" style="margin-top:20px"><h2>ROM Naming Convention</h2><div class="line"></div></div>
+        <p style="font-size:0.83rem;color:var(--muted2);margin-bottom:10px">EmulationStation and Skraper need ROMs named in the No-Intro or Redump standard to correctly identify games.</p>
+        <div class="code"><div class="code-hdr"><span>Correct naming examples</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Good — matches No-Intro standard:</span>
+Super Mario 64 (USA).z64
+The Legend of Zelda - Ocarina of Time (USA).z64
+Mario Kart - Double Dash!! (USA).iso
+
+<span class="cm"># File extensions by console:</span>
+<span class="cm"># N64:        .z64 or .n64</span>
+<span class="cm"># GameCube:   .iso or .rvz (compressed)</span>
+<span class="cm"># SNES:       .sfc or .smc</span>
+<span class="cm"># PS1:        .cue + .bin, or .chd (compressed)</span>
+<span class="cm"># PSP:        .iso or .cso (compressed)</span></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STREAMING -->
+  <div class="subpanel" id="gm-streaming">
+    <div class="alert tip"><span class="ai">📺</span><div class="ab"><strong>Play on any screen in your house — or from your phone anywhere.</strong> Sunshine (on Pi) + Moonlight (on any device) streams your Pi's gaming session over your network with near-zero latency.</div></div>
+    <div class="grid2">
+      <div>
+        <div class="sh" style="margin-top:0"><h2>Moonlight Game Streaming</h2><div class="line"></div></div>
+        <p style="font-size:0.84rem;color:var(--muted2);margin-bottom:12px">Sunshine runs on your Pi as the host. Moonlight runs on your phone, tablet, Fire TV, or another PC as the client. Stream your Pi's desktop (and any game running on it) with low latency.</p>
+        <div class="code"><div class="code-hdr"><span>Install Sunshine (streaming host on Pi)</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div><pre><span class="cm"># Download the ARM64 .deb from GitHub releases:</span>
+<span class="kw">wget https://github.com/LizardByte/Sunshine/releases/latest/download/sunshine-debian-bookworm-arm64.deb
+sudo apt install ./sunshine-debian-bookworm-arm64.deb -y</span>
+
+<span class="cm"># Start Sunshine:</span>
+<span class="kw">sunshine</span>
+<span class="cm"># Configure at https://localhost:47990
+# Add your games as "Applications" in Sunshine's web UI</span></pre></div>
+
+        <div class="sh" style="margin-top:16px"><h2>Moonlight Client Apps</h2><div class="line"></div></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">📱</span><div class="svc-body"><div class="svc-name">Moonlight iOS / Android</div><div class="svc-desc">Free app. Connect to your Pi via Tailscale IP — play games on your phone from anywhere. Pair a Bluetooth controller to your phone.</div></div><span class="tag g">Free</span></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">📺</span><div class="svc-body"><div class="svc-name">Moonlight Fire TV</div><div class="svc-desc">Install on any Amazon Fire TV Stick. Stream your Pi's games to any TV in the house without the Pi being physically connected.</div></div><span class="tag g">Free</span></div>
+        <div class="svc" style="margin-bottom:8px"><span class="svc-icon">💻</span><div class="svc-body"><div class="svc-name">Moonlight PC</div><div class="svc-desc">Stream to another computer on your network. Play Pi games on a laptop screen.</div></div><span class="tag g">Free</span></div>
+      </div>
+      <div>
+        <div class="sh" style="margin-top:0"><h2>Play on Your Phone — Full Setup</h2><div class="line"></div></div>
+        <div class="phase-step"><div class="phase-num">1</div><div class="phase-content"><h4>Install Moonlight on your phone</h4><p>App Store / Google Play → search Moonlight Game Streaming → install free app.</p></div></div>
+        <div class="phase-step"><div class="phase-num">2</div><div class="phase-content"><h4>Make sure Tailscale is active</h4><p>Both your phone and Pi need Tailscale running. This lets Moonlight connect even when you're away from home.</p></div></div>
+        <div class="phase-step"><div class="phase-num">3</div><div class="phase-content"><h4>Add Pi to Moonlight</h4><p>In Moonlight → Add PC → enter Pi's Tailscale IP. A PIN appears — enter it in Sunshine's web UI on the Pi. Paired.</p></div></div>
+        <div class="phase-step"><div class="phase-num">4</div><div class="phase-content"><h4>Pick a game and play</h4><p>Select any game in Moonlight. It streams the Pi's display to your phone. Pair a Bluetooth controller to your phone for full controls.</p></div></div>
+        <div class="alert info" style="margin-top:12px"><span class="ai">💡</span><div class="ab"><strong>Latency:</strong> On your home WiFi, streaming lag is nearly imperceptible (5–15ms). Over 5G from outside your house, N64/SNES/GBA games are perfectly playable. GameCube is borderline depending on your connection speed.</div></div>
+      </div>
     </div>
   </div>
 </div>
